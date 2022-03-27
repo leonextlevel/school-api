@@ -1,4 +1,5 @@
 # School API
+![schoolapi workflow](https://github.com/leonextlevel/school-api/actions/workflows/qa.yml/badge.svg)
 
 ## Objetivo do sistema
 * API que seja capaz de armazenar dados de estudantes no sistema;
