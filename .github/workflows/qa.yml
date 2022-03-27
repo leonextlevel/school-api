@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  pull_request:
+
+  workflow_dispatch:
+
+env:
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/github_actions
+  SECRET_KEY: abacate
+  ALLOWED_HOSTS: localhost,127.0.0.1
+
+jobs:
+
+  test:
+    runs-on: ubuntu-20.04
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configura Python
+        uses: actions/setup-python@master
+        with:
+          python-version: 3.9
+
+      - name: Instala Dependências
+        run: pip install -r requirements-dev.txt
+
+      - name: Linter
+        run: flake8 .
+
+      - name: Roda Testes
+        run: pytest --cov
