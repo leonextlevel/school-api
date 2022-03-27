@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest-django==4.5.2
+pytest-cov==3.0.0
+flake8==4.0.1
+model_bakery==1.4.0

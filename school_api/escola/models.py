@@ -9,7 +9,7 @@ class Escola(models.Model):
         verbose_name = 'Escola'
         verbose_name_plural = 'Escolas'
         ordering = ('nome',)
-    
+
     def __str__(self) -> str:
         return self.nome
 
