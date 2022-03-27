@@ -4,6 +4,14 @@
 * API que seja capaz de armazenar dados de estudantes no sistema;
 * Criar endpoints para: criar, listar, alterar, remover e filtrar estudantes.
 
+
+## Informações do Projeto
+
+### Modelo do Banco de Dados
+
+![image modelo_banco_dados](./docs/diagrama_banco_dados.png)
+
+
 ## Instalação em ambiente de desenvolvimento
 
 ### Pré-requisitos
