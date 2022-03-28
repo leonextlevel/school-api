@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic.base import RedirectView
 
 from rest_framework import routers
 from rest_framework.schemas import get_schema_view
@@ -37,6 +38,7 @@ router.register(r'professor', views_escola.ProfessorViewSet)
 router.register(r'disciplina', views_escola.DisciplinaViewSet)
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/docs/')),
     path('api/v1/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('openapi/', get_schema_view(title="Documentação - School API"), name="openapi-schema"),
