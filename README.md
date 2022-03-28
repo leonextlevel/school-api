@@ -1,17 +1,44 @@
 # School API
 ![schoolapi workflow](https://github.com/leonextlevel/school-api/actions/workflows/qa.yml/badge.svg)
 
+## Acesso
+Para facilitar o acesso a aplicação para testes, ela foi disponilizada utilizando a
+plataforma Heroku e pode ser acessada em:
+* https://school-api-drf.herokuapp.com/ (raiz - redireciona para documentação)
+* https://school-api-drf.herokuapp.com/docs/ (documentação)
+* https://school-api-drf.herokuapp.com/api/v1/ (raiz da api)
+
+
 ## Objetivo do sistema
 * API que seja capaz de armazenar dados de estudantes no sistema;
 * Criar endpoints para: criar, listar, alterar, remover e filtrar estudantes.
 
-
 ## Informações do Projeto
+
+### Principais Tecnologias Utilizadas
+* Python
+* Django
+* Django Rest Framework
+* PostgreSQL
+* Pytest
+* Coverage
+* Flake8 (linter)
+* Docker/docker-compose
+* Github Actions (CI/CD)
+* Heroku
 
 ### Modelo do Banco de Dados
 
-![image modelo_banco_dados](./docs/diagrama_banco_dados.png)
+<img src="./docs/diagrama_banco_dados.png" style="max-width: 450px">
 
+### Documentação da API
+
+Para facilitar a utilização da API, foi utilizada a ferramenta Swagger para gerar uma página
+onde é possível conferir e executar todos os endpoints disponíveis.
+
+URL da Documentação: https://school-api-drf.herokuapp.com/docs/
+
+<img src="./docs/documentacao_api.png" style="max-width: 450px">
 
 ## Instalação em ambiente de desenvolvimento
 
@@ -62,7 +89,7 @@ Obs: Usaremos o docker-compose para subir um container com um banco PostgreSQL p
     ```
     A aplicação estará disponível em: http://localhost:8000/
 
-## Extra
+## Comandos Extra
 
 1. Rodar os testes e ver a cobertura
     ```bash
@@ -73,3 +100,16 @@ Obs: Usaremos o docker-compose para subir um container com um banco PostgreSQL p
     ```bash
     $ flake8 .
     ```
+
+3. Carregar alguns dados inciais par ao banco de dados
+    ```bash
+    $ python manage.py loaddata dumpdata.json
+    ```
+
+## Considerações
+
+Para facilitar a disponibilização do sistema no Heroku foi utilizado a módulo venv
+de ambientes virtuais do Python, entretanto é sempre interessante cogitar a utilização
+do ambiente todo em containers para garantir um ambiente ainda mais isolado e controlado,
+então talvez seja interessante a utilização "completa" do Docker no projeto e não somente
+para a instância do banco de dados.
