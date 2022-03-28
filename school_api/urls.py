@@ -39,7 +39,10 @@ router.register(r'disciplina', views_escola.DisciplinaViewSet)
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/docs/')),
-    path('api/v1/', include(router.urls)),
+    path('api/v1/', include([
+        path('', include(router.urls)),
+        path('nota/insert/', views_aluno.NotaCreateView.as_view(), name='nota-insert'),
+    ])),
     path('admin/', admin.site.urls),
     path('openapi/', get_schema_view(title="Documentação - School API"), name="openapi-schema"),
     path('docs/', SwaggerView.as_view(), name='swagger-ui'),

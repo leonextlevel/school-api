@@ -17,6 +17,7 @@ class ResponsavelSerializer(serializers.ModelSerializer):
 
 
 class AlunoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Aluno
         fields = [
@@ -33,14 +34,18 @@ class AlunoSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id']
 
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['notas'] = list(instance.nota_set.values('disciplina', 'valor'))
+        ret['responsaveis'] = list(instance.responsavelaluno_set.values('responsavel', 'relacao'))
+        return ret
+
 
 class NotaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nota
         fields = [
-            'id',
             'aluno',
             'disciplina',
             'valor',
         ]
-        read_only_fields = ['id']
