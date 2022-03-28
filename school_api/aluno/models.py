@@ -12,6 +12,9 @@ class Responsavel(models.Model):
         verbose_name_plural = 'Responsáveis'
         ordering = ('nome',)
 
+    def __str__(self) -> str:
+        return self.nome
+
 
 class Aluno(models.Model):
     nome = models.CharField('Nome', max_length=64)
