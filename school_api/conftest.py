@@ -34,5 +34,10 @@ def aluno(db):
 
 
 @pytest.fixture
+def responsavel_aluno(responsavel, aluno):
+    return baker.make('aluno.ResponsavelAluno', responsavel=responsavel, aluno=aluno)
+
+
+@pytest.fixture
 def nota(aluno, disciplina):
     return baker.make('aluno.Nota', aluno=aluno, disciplina=disciplina)
